@@ -8,7 +8,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableFeignClients(basePackages = "com.wzz.personal.feignService")
+@EnableFeignClients(basePackages = "com.wzz.order.feign")
 @MapperScan("com.wzz.order.samples.quickstart.mapper")
 public class OrderApplication {
 

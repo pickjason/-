@@ -1,9 +1,10 @@
 package com.wzz.personal.feignService;
 
 import com.wzz.personal.entity.User;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @program: classification
@@ -11,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @author: wzz
  * @create: 2019-07-31 14:20
  */
-@FeignClient(value = "person",url = "127.0.0.1:8730/person",path = "/commons")
+@RestController
 public interface UserServiceFeign {
 
-   @PostMapping(value = "/addUser")
-    public int addUser(@RequestBody User user);
+    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
+   int addUser(@RequestBody User user);
 
 }

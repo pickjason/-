@@ -8,6 +8,8 @@ server:
     client:
       service-url:
         defaultZone: http://127.0.0.1:8761/eureka/
+  servlet:
+    context-path: /commons
   #应用名字
 spring:
   application:

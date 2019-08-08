@@ -1,5 +1,6 @@
 package com.wzz.personal.feignService.feignImpl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.wzz.personal.entity.User;
 import com.wzz.personal.feignService.UserServiceFeign;
 import com.wzz.personal.service.IUserService;
@@ -20,5 +21,12 @@ public class UserServiceFeignImpl implements UserServiceFeign {
     @Override
     public int addUser(User user) {
         return iUserService.save(user)==true ? 1:0;
+    }
+
+    @Override
+    public User getUserByName(String name) {
+        QueryWrapper<User>queryWrapper =new QueryWrapper<>();
+        queryWrapper.eq("name",name);
+        return iUserService.getOne(queryWrapper);
     }
 }

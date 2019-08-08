@@ -15,22 +15,26 @@ import org.springframework.web.bind.annotation.RestController;
  * @create: 2019-07-31 16:12
  */
 @RestController
-@RequestMapping("/rest")
+@RequestMapping("/order")
 public class restfulController {
 
     @Autowired
    private UserFeign userServiceFeign;
 
      @PostMapping("/addUser")
-     public String addUser(@RequestBody User user){
-         System.out.println(user.getName());
-         int i = userServiceFeign.addUser(user);
-         if (i>0){
-             return "success";
-         }else {
+     public String addUser(@RequestBody User user) {
+         User userByName = userServiceFeign.getUserByName(user.getName());
+         if (null == userByName) {
+             int i = userServiceFeign.addUser(user);
+             if (i > 0) {
+                 return "success";
+             } else {
 
-             return "error";
+                 return "error";
+             }
          }
+         return "已经有该名称";
      }
+
 
 }
